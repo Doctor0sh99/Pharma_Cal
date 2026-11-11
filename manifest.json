@@ -1,0 +1,19 @@
+{
+  "name": "الموسوعة الصيدلانية السريرية",
+  "short_name": "الدليل الدوائي",
+  "description": "مرجع سريع للجرعات الدوائية BNF للأطفال والبالغين.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0284c7",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3022/3022874.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

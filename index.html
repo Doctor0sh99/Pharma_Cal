@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموسوعة الصيدلانية السريرية | BNF & BNFc</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#001D39">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar navbar-expand-lg sticky-top custom-navbar shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+                <span class="brand-icon d-inline-flex align-items-center justify-content-center rounded-3">
+                    💊
+                </span>
+                <span>الموسوعة الصيدلانية <small class="badge bg-info-subtle text-info-emphasis fs-6 ms-1">BNF Pro</small>
+                
+                </span>
+            </a>
+
+            <div class="d-flex align-items-center gap-2">
+                    <button id="themeToggleBtn" class="btn clinical-toolbar-btn rounded-pill px-3 py-1 d-flex align-items-center gap-2">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                        <span id="themeText" class="small fw-bold">الوضع الليلي</span>
+                    </button>
+                </div>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" href="index.html">
+                            <i class="bi bi-grid-1x2-fill me-1"></i> الدليل التفاعلي
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="about.html">
+                            <i class="bi bi-info-circle-fill me-1"></i> حول المرجع
+                        </a>
+                    </li>
+                </ul>
+
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- الترويسة الرئيسية مع الستيكرات اللطيفة -->
+    <header class="hero-section py-5 mb-4">
+        <!-- ستيكرات تجميلية عائمة -->
+        <div class="floating-sticker sticker-1">🩺</div>
+        <div class="floating-sticker sticker-2">🧸</div>
+        <div class="floating-sticker sticker-3">🧪</div>
+        <div class="floating-sticker sticker-4">💙</div>
+
+        <div class="container text-center position-relative" style="z-index: 2;">
+            <span class="badge rounded-pill hero-badge mb-3 px-3 py-2">
+                ✨ الإصدار السريري الذكي — يعمل بدون إنترنت (Offline Ready)
+            </span>
+            <h1 class="display-5 fw-extrabold mb-2 text-white">الموسوعة الصيدلانية السريرية</h1>
+            <p class="lead mx-auto mb-4" style="max-width: 720px; color: #BDD8E9;">
+                مرجع شامل لجرعات الأطفال والرضع والبالغين، مزود بحاسبة معلقات ذكية، فاحص تداخلات، وحاسبات القصور الكلوي والإمهاء الوريدي.
+            </p>
+
+            <!-- لوحة البحث والفلترة -->
+            <div class="search-panel card border-0 p-3 p-md-4 mx-auto text-start">
+                <div class="row g-3 align-items-center">
+                    <!-- البحث النصي + الصوتي -->
+                    <div class="col-12 col-md-7">
+                        <label for="searchInput" class="form-label fw-bold small mb-1">
+                            <i class="bi bi-search me-1"></i> ابحث باسم الدواء، الاستطباب، أو استخدم البحث الصوتي:
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-transparent border-end-0 text-primary">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" id="searchInput" class="form-control border-start-0 ps-0" placeholder="ابحث عن: أموكسيسيلين، سيتيريزين، التهاب أذن...">
+                            <button id="voiceSearchBtn" class="btn btn-outline-primary voice-btn" type="button" title="بحث صوتي">
+                                <i class="bi bi-mic-fill"></i>
+                            </button>
+                            <button id="clearSearchBtn" class="btn btn-outline-secondary d-none" type="button" title="مسح">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- فلتر الزمر الدوائية -->
+                    <div class="col-12 col-md-5">
+                        <label for="categorySelect" class="form-label fw-bold small mb-1">
+                            <i class="bi bi-funnel-fill me-1"></i> تصفية حسب الزمرة أو البروتوكول:
+                        </label>
+                        <select id="categorySelect" class="form-select form-select-lg">
+                            <option value="all">🌟 جميع الأدوية المعتمدة</option>
+                            <option value="favorites">⭐ قائمة المفضلة (الأكثر صرفاً)</option>
+                            <option value="الصادات الحيوية">🦠 الصادات الحيوية (Antibiotics)</option>
+                            <option value="المسكنات ومضادات الالتهاب">💊 المسكنات ومضادات الالتهاب</option>
+                            <option value="أدوية الرشح والتنفس">🫁 أدوية الرشح، التحسس، والتنفس</option>
+                            <option value="أدوية الجهاز الهضمي">🩺 أدوية الجهاز الهضمي</option>
+                            <option value="الفيتامينات والمعادن">⚡ الفيتامينات والمعادن</option>
+                            <option value="الكورتيزونات">🛡️ الكورتيزونات</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- أزرار الزمر السريعة -->
+                <div class="d-flex flex-wrap gap-2 mt-3 pt-3 border-top" id="quickFilterContainer">
+                    <button class="btn btn-sm filter-chip active" data-category="all">🌟 الكل</button>
+                    <button class="btn btn-sm filter-chip" data-category="favorites">⭐ المفضلة <span id="favCountBadge" class="badge bg-warning text-dark ms-1">0</span></button>
+                    <button class="btn btn-sm filter-chip" data-category="الصادات الحيوية">🦠 الصادات الحيوية</button>
+                    <button class="btn btn-sm filter-chip" data-category="المسكنات ومضادات الالتهاب">💊 المسكنات والالتهاب</button>
+                    <button class="btn btn-sm filter-chip" data-category="أدوية الرشح والتنفس">🫁 الرشح والتنفس</button>
+                    <button class="btn btn-sm filter-chip" data-category="أدوية الجهاز الهضمي">🩺 الجهاز الهضمي</button>
+                    <button class="btn btn-sm filter-chip" data-category="الفيتامينات والمعادن">⚡ الفيتامينات</button>
+                    <button class="btn btn-sm filter-chip" data-category="الكورتيزونات">🛡️ الكورتيزونات</button>
+                </div>
+
+                <!-- البروتوكولات السريرية الجاهزة (Presets) -->
+                <div class="d-flex flex-wrap align-items-center gap-2 mt-2 pt-2">
+                    <span class="small fw-bold text-secondary"><i class="bi bi-journal-medical me-1"></i> بروتوكولات سريعة:</span>
+                    <button class="btn btn-sm btn-outline-info rounded-pill protocol-btn" data-protocol="otitis">👂 التهاب الأذن الوسطى</button>
+                    <button class="btn btn-sm btn-outline-info rounded-pill protocol-btn" data-protocol="asthma">🌬️ الربو والخناق</button>
+                    <button class="btn btn-sm btn-outline-info rounded-pill protocol-btn" data-protocol="gastro">💧 التهاب المعدة والإسهال</button>
+                    <button class="btn btn-sm btn-outline-info rounded-pill protocol-btn" data-protocol="anaphylaxis">🚨 طوارئ وصدمة التأق</button>
+                    <button class="btn btn-sm btn-outline-info rounded-pill protocol-btn" data-protocol="uti">🔬 إنتان المسالك البولية</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الأدوات السريرية وإدارة النظام -->
+    <section class="container mb-4">
+        <div class="d-flex flex-wrap justify-content-center justify-content-md-between align-items-center gap-2 p-3 rounded-4" style="background-color: var(--bg-card); border: 1.5px solid var(--border-subtle);">
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn clinical-toolbar-btn" data-bs-toggle="modal" data-bs-target="#clinicalToolsModal" onclick="switchToolTab('fluidsTab')">
+                    💧 حاسبة سوائل الإمهاء (4-2-1)
+                </button>
+                <button class="btn clinical-toolbar-btn" data-bs-toggle="modal" data-bs-target="#clinicalToolsModal" onclick="switchToolTab('renalTab')">
+                    🫘 حاسبة القصور الكلوي (eGFR)
+                </button>
+                <button class="btn clinical-toolbar-btn" data-bs-toggle="modal" data-bs-target="#clinicalToolsModal" onclick="switchToolTab('interactionsTab')">
+                    ⚡ فاحص التداخلات الدوائية
+                </button>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+                <button class="btn clinical-toolbar-btn text-primary" id="openAddDrugBtn">
+                    ➕ إضافة دواء جديد
+                </button>
+                <button class="btn clinical-toolbar-btn" data-bs-toggle="modal" data-bs-target="#backupModal">
+                    💾 نسخ احتياطي (JSON)
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- شبكة الأدوية -->
+    <main class="container pb-5">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <h2 class="h5 fw-extrabold mb-0" id="currentViewTitle">قائمة الأدوية المعتمدة</h2>
+                <span id="resultsCount" class="badge rounded-pill px-3 py-2" style="background-color: #0A4174;">0 دواء</span>
+            </div>
+            <div class="small" style="color: var(--text-muted);">
+                ✨ اضغط على البطاقة لفتح حاسبة الوزن والمعلقات، أو على النجمة ⭐ لإضافتها للمفضلة
+            </div>
+        </div>
+
+        <div class="row g-4" id="drugsGrid"></div>
+
+        <!-- حالة عدم وجود نتائج -->
+        <div id="emptyState" class="text-center py-5 d-none">
+            <div class="display-1 mb-3">🔍🧸</div>
+            <h3 class="h4 fw-bold">لم نجد دواءً يطابق بحثك</h3>
+            <p class="text-secondary mb-4">جرب البحث باسم آخر أو أضف الدواء بنفسك عبر لوحة التحكم المحلية.</p>
+            <button id="resetFiltersBtn" class="btn btn-primary rounded-pill px-4">
+                <i class="bi bi-arrow-counterclockwise me-1"></i> عرض كافة الأدوية
+            </button>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+         1. النافذة المنبثقة لتفاصيل الدواء وحاسبة الوزن والشراب
+         ========================================================================== -->
+    <div class="modal fade" id="drugDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg overflow-hidden">
+                <div class="modal-header border-0 pb-0 pt-4 px-4 d-flex justify-content-between align-items-start">
+                    <div>
+                        <span id="modalCategoryBadge" class="badge rounded-pill badge-cat mb-2 px-3 py-1"></span>
+                        <h3 class="modal-title fw-extrabold mb-0" id="modalDrugTitle"></h3>
+                        <p class="fw-semibold mb-0 font-monospace" style="color: var(--text-muted);" id="modalDrugEn"></p>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" id="editCurrentDrugBtn" class="btn btn-sm btn-outline-primary rounded-pill px-3" title="تعديل الدواء">
+                            <i class="bi bi-pencil-square"></i> تعديل
+                        </button>
+                        <button type="button" id="deleteCurrentDrugBtn" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="حذف الدواء">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                        <button type="button" class="btn-close ms-0" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                    </div>
+                </div>
+
+                <div class="modal-body p-4">
+                    <div class="row g-3">
+                        <!-- جرعة الأطفال -->
+                        <div class="col-12 col-md-6">
+                            <div class="detail-box pediatric-box p-3 rounded-4 h-100">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="fs-4">🧸</span>
+                                    <h4 class="h6 fw-extrabold mb-0">جرعة الأطفال والرضع (لكل كغ)</h4>
+                                </div>
+                                <p class="mb-0 lh-lg" id="modalPediatricDose"></p>
+                            </div>
+                        </div>
+
+                        <!-- جرعة البالغين -->
+                        <div class="col-12 col-md-6">
+                            <div class="detail-box adult-box p-3 rounded-4 h-100">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="fs-4">🧑‍⚕️</span>
+                                    <h4 class="h6 fw-extrabold mb-0">جرعة البالغين المعيارية</h4>
+                                </div>
+                                <p class="mb-0 lh-lg" id="modalAdultDose"></p>
+                            </div>
+                        </div>
+
+                        <!-- حاسبة الجرعات والمعلقات الذكية -->
+                        <div class="col-12" id="calculatorSection">
+                            <div class="calculator-box p-3 p-md-4 rounded-4">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                                    <h4 class="h6 fw-extrabold mb-0 d-flex align-items-center gap-2">
+                                        <span>🧮</span> حاسبة الجرعة وتحويل المعلقات الفموية (ملغ ⬅ مل)
+                                    </h4>
+                                    <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill">حساب فوري مع رادار أمان</span>
+                                </div>
+
+                                <div class="row g-2 align-items-end">
+                                    <div class="col-12 col-md-4">
+                                        <label class="form-label small fw-bold mb-1">وزن الطفل (كغ):</label>
+                                        <div class="input-group">
+                                            <input type="number" id="weightInput" class="form-control text-center fw-bold" placeholder="مثال: 12" min="0.5" max="100" step="0.5">
+                                            <span class="input-group-text fw-bold">كغ</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-5">
+                                        <label class="form-label small fw-bold mb-1">عيار الشراب / المعلق (اختياري لتحويل الـ ml):</label>
+                                        <select id="suspensionSelect" class="form-select">
+                                            <option value="0">بدون تحويل (حساب بالميليغرام فقط)</option>
+                                            <option value="100/5">100 ملغ / 5 مل (مثل سيفيكسيم / أزيثروميسين)</option>
+                                            <option value="120/5">120 ملغ / 5 مل (باراسيتامول شراب)</option>
+                                            <option value="125/5">125 ملغ / 5 مل (أموكسيسيلين / سيفالكسين)</option>
+                                            <option value="200/5">200 ملغ / 5 مل (أزيثروميسين / ميترونيدازول)</option>
+                                            <option value="228/5">228.5 ملغ / 5 مل (أوغمنتين عيار 228)</option>
+                                            <option value="250/5">250 ملغ / 5 مل (أموكسيسيلين / باراسيتامول)</option>
+                                            <option value="312/5">312.5 ملغ / 5 مل (أوغمنتين عيار 312)</option>
+                                            <option value="400/5">400 ملغ / 5 مل (أوغمنتين ES / إيبوبروفين مضاعف)</option>
+                                            <option value="457/5">457 ملغ / 5 مل (أوغمنتين فورت 457)</option>
+                                            <option value="600/5">600 ملغ / 5 مل (أوغمنتين ES-600)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-12 col-md-3">
+                                        <button id="calcBtn" class="btn btn-primary w-100 fw-extrabold py-2" style="background-color: #0A4174;">
+                                            <i class="bi bi-lightning-charge-fill"></i> احسب الجرعة
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- صندوق النتيجة (تم إصلاح ألوان النصوص للوضع الليلي والنهاري) -->
+                                <div id="calcResult" class="mt-3 p-3 rounded-4 d-none"></div>
+                            </div>
+                        </div>
+
+                        <!-- مضادات الاستطباب -->
+                        <div class="col-12">
+                            <div class="detail-box contra-box p-3 rounded-4">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="fs-5">⛔</span>
+                                    <h4 class="h6 fw-extrabold mb-0 text-danger-emphasis">مضادات الاستطباب والمحاذير الكبرى</h4>
+                                </div>
+                                <p class="mb-0 lh-lg" id="modalContra"></p>
+                            </div>
+                        </div>
+
+                        <!-- الملاحظات السريرية -->
+                        <div class="col-12">
+                            <div class="detail-box notes-box p-3 rounded-4">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <span class="fs-5">💡</span>
+                                    <h4 class="h6 fw-extrabold mb-0 text-success-emphasis">ملاحظات سريرية وصيدلانية هامة</h4>
+                                </div>
+                                <p class="mb-0 lh-lg" id="modalNotes"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0 pt-0 px-4 pb-4 justify-content-between">
+                    <small style="color: var(--text-muted);">
+                        🛡️ راجع الوظيفة الكلوية والكبدية دائماً قبل اعتماد الجرعات القصوى.
+                    </small>
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         2. نافذة الأدوات السريرية المتقدمة (سوائل 4-2-1، القصور الكلوي، التداخلات)
+         ========================================================================== -->
+    <div class="modal fade" id="clinicalToolsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title h5 fw-extrabold">🩺 مجمع الحاسبات والأدوات السريرية</h3>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- تبويبات الأدوات -->
+                    <ul class="nav nav-pills nav-fill gap-2 mb-4 p-1 rounded-4" style="background-color: var(--bg-body);" id="toolsTabs">
+                        <li class="nav-item">
+                            <button class="nav-link active rounded-4 fw-bold" data-bs-toggle="pill" data-bs-target="#fluidsTab">💧 سوائل الإمهاء (4-2-1)</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-4 fw-bold" data-bs-toggle="pill" data-bs-target="#renalTab">🫘 القصور الكلوي (eGFR)</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link rounded-4 fw-bold" data-bs-toggle="pill" data-bs-target="#interactionsTab">⚡ فاحص التداخلات</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- تبويب 1: حاسبة سوائل الإمهاء الوريدي (Holliday-Segar) -->
+                        <div class="tab-pane fade show active" id="fluidsTab">
+                            <div class="p-3 rounded-4 pediatric-box mb-3">
+                                <h4 class="h6 fw-extrabold mb-2">قاعدة Holliday-Segar (4-2-1) لحساب السوائل الوريدية الداعمة</h4>
+                                <p class="small mb-3">تحسب حاجة الطفل اليومية وبالميللتر/ساعة من السوائل الوريدية (أول 10 كغ: 4 مل/كغ/سا، ثاني 10 كغ: 2 مل/كغ/سا، وكل كغ إضافي: 1 مل/كغ/سا).</p>
+                                <div class="row g-2 align-items-end">
+                                    <div class="col-md-8">
+                                        <label class="form-label small fw-bold">وزن المريض (كغ):</label>
+                                        <input type="number" id="fluidWeightInput" class="form-control" placeholder="أدخل الوزن بالكيلوغرام (مثلاً: 24)" min="1" step="0.5">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary w-100 fw-bold" id="calcFluidsBtn">احسب السوائل</button>
+                                    </div>
+                                </div>
+                                <div id="fluidsResult" class="mt-3 p-3 rounded-3 d-none" style="background-color: var(--calc-result-bg); border: 1px solid var(--border-subtle);"></div>
+                            </div>
+                        </div>
+
+                        <!-- تبويب 2: حاسبة القصور الكلوي وتعديل الجرعة -->
+                        <div class="tab-pane fade" id="renalTab">
+                            <div class="p-3 rounded-4 pediatric-box">
+                                <h4 class="h6 fw-extrabold mb-2">حاسبة التصفية الكلوية (Schwartz للأطفال / Cockcroft-Gault للبالغين)</h4>
+                                <div class="row g-2">
+                                    <div class="col-md-3">
+                                        <label class="form-label small fw-bold">الفئة العمرية:</label>
+                                        <select id="renalPatientType" class="form-select">
+                                            <option value="child">طفل (معادلة Schwartz)</option>
+                                            <option value="adult_m">بالغ ذكر (Cockcroft)</option>
+                                            <option value="adult_f">بالغة أنثى (Cockcroft)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label small fw-bold">العمر (سنوات):</label>
+                                        <input type="number" id="renalAge" class="form-control" placeholder="مثلاً: 8 أو 55">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label small fw-bold">الوزن (كغ) / الطول (سم):</label>
+                                        <input type="number" id="renalAnthro" class="form-control" placeholder="الطول للطفل / الوزن للبالغ">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label small fw-bold">كرياتينين المصل (mg/dL):</label>
+                                        <input type="number" id="renalScr" class="form-control" placeholder="مثلاً: 1.4" step="0.1">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100 fw-bold mt-3" id="calcRenalBtn">احسب التصفية وتوصية تعديل الجرعات</button>
+                                <div id="renalResult" class="mt-3 p-3 rounded-3 d-none" style="background-color: var(--calc-result-bg); border: 1px solid var(--border-subtle);"></div>
+                            </div>
+                        </div>
+
+                        <!-- تبويب 3: فاحص التداخلات الدوائية -->
+                        <div class="tab-pane fade" id="interactionsTab">
+                            <div class="p-3 rounded-4 pediatric-box">
+                                <h4 class="h6 fw-extrabold mb-2">فاحص التداخلات الدوائية السريري (Drug-Drug Interactions)</h4>
+                                <p class="small mb-3">اختر دوائين لفحص سلامة الجمع بينهما في نفس الوصفة الطبية:</p>
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">الدواء الأول:</label>
+                                        <select id="interDrug1" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold">الدواء الثاني:</label>
+                                        <select id="interDrug2" class="form-select"></select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-100 fw-bold mt-3" id="checkInteractionBtn">فحص التداخل الآن</button>
+                                <div id="interactionResult" class="mt-3 p-3 rounded-3 d-none" style="background-color: var(--calc-result-bg); border: 1px solid var(--border-subtle);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         3. نافذة إضافة / تعديل دواء (CRUD Modal)
+         ========================================================================== -->
+    <div class="modal fade" id="crudDrugModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title h5 fw-extrabold" id="crudModalTitle">➕ إضافة دواء جديد للقاعدة المحلية</h3>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="crudDrugForm">
+                    <div class="modal-body p-4">
+                        <input type="hidden" id="crudDrugId">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">الاسم العلمي / التجاري (عربي) *</label>
+                                <input type="text" id="crudAr" class="form-control" required placeholder="مثال: سيفدينير">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">الاسم الإنجليزي (English) *</label>
+                                <input type="text" id="crudEn" class="form-control" required placeholder="Cefdinir">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">الزمرة الدوائية *</label>
+                                <select id="crudCat" class="form-select" required>
+                                    <option value="الصادات الحيوية">الصادات الحيوية</option>
+                                    <option value="المسكنات ومضادات الالتهاب">المسكنات ومضادات الالتهاب</option>
+                                    <option value="أدوية الرشح والتنفس">أدوية الرشح والتنفس</option>
+                                    <option value="أدوية الجهاز الهضمي">أدوية الجهاز الهضمي</option>
+                                    <option value="الفيتامينات والمعادن">الفيتامينات والمعادن</option>
+                                    <option value="الكورتيزونات">الكورتيزونات</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">جرعة الأطفال والرضع (لكل كغ) *</label>
+                                <textarea id="crudPed" class="form-control" rows="2" required placeholder="مثال: 14 ملغ/كغ مقسمة على جرعتين كل 12 ساعة."></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">جرعة البالغين المعيارية *</label>
+                                <textarea id="crudAdult" class="form-control" rows="2" required placeholder="مثال: 300 ملغ كل 12 ساعة."></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">مضادات الاستطباب الكبرى *</label>
+                                <textarea id="crudContra" class="form-control" rows="2" required></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">ملاحظات سريرية وصيدلانية *</label>
+                                <textarea id="crudNotes" class="form-control" rows="2" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">إلغاء</button>
+                        <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">💾 حفظ في القاعدة المحلية</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         4. نافذة النسخ الاحتياطي والاستيراد (Export / Import JSON)
+         ========================================================================== -->
+    <div class="modal fade" id="backupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header border-bottom">
+                    <h3 class="modal-title h5 fw-extrabold">💾 النسخ الاحتياطي ومزامنة البيانات (JSON)</h3>
+                    <button type="button" class="btn-close ms-0" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="small text-secondary mb-3">
+                        يتم حفظ كافة تعديلاتك والأدوية المضافة والمفضلة في متصفحك تلقائياً. يمكنك تصدير نسخة احتياطية بملف JSON لنقلها لجهاز آخر:
+                    </p>
+                    <div class="d-grid gap-3">
+                        <button id="exportJsonBtn" class="btn btn-primary fw-bold py-2 rounded-3">
+                            <i class="bi bi-download me-1"></i> تصدير قاعدة البيانات كاملة (Download JSON)
+                        </button>
+
+                        <div class="p-3 rounded-3 border" style="background-color: var(--bg-body);">
+                            <label class="form-label small fw-bold mb-2"><i class="bi bi-upload me-1"></i> استيراد ملف قاعدة بيانات (JSON):</label>
+                            <input type="file" id="importJsonInput" accept=".json" class="form-control form-control-sm">
+                        </div>
+
+                        <hr class="my-1">
+
+                        <button id="factoryResetBtn" class="btn btn-outline-danger btn-sm rounded-3 py-2">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i> استعادة الضبط المصنعي (الـ 149 دواء الأصلية)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer py-4 border-top mt-5" style="background-color: var(--bg-card);">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <p class="mb-0 small" style="color: var(--text-muted);">
+                © 2026 <strong>الموسوعة الصيدلانية السريرية</strong> — مبنية وفق دلائل BNF & BNFc.
+            </p>
+            <p class="mb-0 small" style="color: var(--text-muted);">
+                 <strong>الصيدلاني أحمد الشلبي  </strong> 
+            </p>
+            <div class="d-flex gap-3 small">
+                <a href="index.html" class="text-decoration-none fw-bold" style="color: var(--primary-color);">الرئيسية</a>
+                <a href="about.html" class="text-decoration-none fw-bold" style="color: var(--primary-color);">حول المرجع</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

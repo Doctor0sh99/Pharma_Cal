@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-bs-theme="darl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول المرجع | الدليل الدوائي السريري BNF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar navbar-expand-lg sticky-top custom-navbar shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+                <span class="brand-icon d-inline-flex align-items-center justify-content-center rounded-3">
+                    <i class="bi bi-capsule-pill"></i>
+                </span>
+                <span>الدليل الدوائي <small class="badge bg-primary-subtle text-primary-emphasis fs-6 ms-1">BNF</small></span>
+            </a>
+
+            <div class="d-flex align-items-center">
+                    <button id="themeToggleBtn" class="btn btn-theme-toggle rounded-pill px-3 py-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                        <span id="themeText" class="small fw-bold">الوضع الليلي</span>
+                    </button>
+                </div>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1">
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="index.html">
+                            <i class="bi bi-grid-1x2-fill me-1"></i> موسوعة الأدوية
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-semibold" href="about.html">
+                            <i class="bi bi-info-circle-fill me-1"></i> حول المرجع
+                        </a>
+                    </li>
+                </ul>
+
+                
+            </div>
+        </div>
+    </nav>
+
+    <!-- ترويسة صفحة حول -->
+    <header class="hero-section py-5 mb-5">
+        <div class="container text-center">
+            <span class="badge rounded-pill hero-badge mb-3 px-3 py-2">
+                <i class="bi bi-book-half me-1"></i> منهجية العمل والمصادر العلمية
+            </span>
+            <h1 class="display-5 fw-extrabold mb-3">حول الموسوعة الصيدلانية السريرية</h1>
+            <p class="lead text-secondary mx-auto hero-subtitle">
+                منصة رقمية مصممة للصيادلة، الأطباء، وطلاب الكليات الطبية لتسهيل الوصول الفوري للجرعات الدوائية الدقيقة والمحاذير السريرية.
+            </p>
+        <p>و خصيصا للدكتورة : إلهام ضاهر</p>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <main class="container pb-5">
+        <div class="row g-4">
+            <!-- بطاقة تعريف BNF -->
+            <div class="col-12 col-lg-6">
+                <div class="card border-0 shadow-sm h-100 p-4 rounded-4 info-card">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="feature-icon bg-primary-subtle text-primary rounded-3 p-3">
+                            <i class="bi bi-journal-medical fs-3"></i>
+                        </div>
+                        <h2 class="h4 fw-bold mb-0">ما هو مرجع BNF و BNFc؟</h2>
+                    </div>
+                    <p class="text-secondary lh-lg mb-0">
+                        <strong>كتيب الوصفات الوطني البريطاني (British National Formulary - BNF)</strong> والنسخة المخصصة للأطفال <strong>(BNF for Children - BNFc)</strong> هما من أدق المراجع الدوائية المعتمدة عالمياً، ويصدران بشكل مشترك عن الجمعية الطبية البريطانية (BMA) والجمعية الصيدلانية الملكية (RPS). يوفر هذا الموقع تلخيصاً سريرياً مركزاً لأهم الأدوية المتداولة في الممارسة اليومية.
+                    </p>
+                </div>
+            </div>
+
+            <!-- بطاقة هيكلة البيانات -->
+            <div class="col-12 col-lg-6">
+                <div class="card border-0 shadow-sm h-100 p-4 rounded-4 info-card">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="feature-icon bg-success-subtle text-success rounded-3 p-3">
+                            <i class="bi bi-layers-fill fs-3"></i>
+                        </div>
+                        <h2 class="h4 fw-bold mb-0">الزمر الدوائية المشمولة</h2>
+                    </div>
+                    <p class="text-secondary lh-lg mb-3">
+                        تغطي قاعدة البيانات في هذه المنصة <strong>أكثر من 145 دواءً</strong> موزعة على 6 قطاعات علاجية رئيسية:
+                    </p>
+                    <div class="row g-2 small fw-semibold">
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> 50 صاداً حيوياً ومضاداً للجراثيم</div>
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> 50 مسكناً ومضاد التهاب ومرخي عضلي</div>
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> أدوية الرشح، التحسس والربو</div>
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> أدوية الجهاز الهضمي والمعدي</div>
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> الفيتامينات، المعادن وفقر الدم</div>
+                        <div class="col-6"><i class="bi bi-check2-circle text-success me-1"></i> الكورتيزونات الموضعية والجهازية</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قواعد ذهبية في حساب جرعات الأطفال -->
+            <div class="col-12">
+                <div class="card border-0 shadow-sm p-4 rounded-4 info-card">
+                    <h3 class="h5 fw-bold mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-calculator-fill text-primary"></i>
+                        قواعد أساسية عند مراجعة جرعات الأطفال والرضع
+                    </h3>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-body-tertiary h-100">
+                                <h4 class="h6 fw-bold text-primary">1. الحساب حسب الوزن (ملغ/كغ)</h4>
+                                <p class="small text-secondary mb-0 lh-base">
+                                    تُحسب معظم جرعات الأطفال بالميليغرام لكل كيلوغرام من وزن الجسم، مع الانتباه دائماً إلى أن الجرعة المحسوبة للطفل ذي الوزن الزائد يجب ألا تتجاوز الجرعة القصوى للبالغين.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-body-tertiary h-100">
+                                <h4 class="h6 fw-bold text-primary">2. المركبات الثنائية</h4>
+                                <p class="small text-secondary mb-0 lh-base">
+                                    في الأدوية المركبة مثل (الأموغمنتين Augmentin) تُحسب الجرعة بناءً على الأموكسيسيلين، وفي (الكوتريموكسازول) تُحسب الجرعة بناءً على مركب التريميثوبريم.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 bg-body-tertiary h-100">
+                                <h4 class="h6 fw-bold text-primary">3. الوظيفة الكلوية والكبدية</h4>
+                                <p class="small text-secondary mb-0 lh-base">
+                                    الجرعات المذكورة هي للمرضى ذوي الوظائف الفيزيولوجية الطبيعية. الأدوية ذات الهامش العلاجي الضيق (كالجنتاميسين والفانكوميسين) تتطلب مراقبة تركيز الدواء في المصل (TDM).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إخلاء مسؤولية طبي -->
+            <div class="col-12">
+                <div class="alert alert-warning border-0 rounded-4 p-4 shadow-sm mb-0">
+                    <div class="d-flex align-items-start gap-3">
+                        <i class="bi bi-shield-exclamation fs-2 text-warning-emphasis"></i>
+                        <div>
+                            <h4 class="h6 fw-bold mb-1">تنويه وإخلاء مسؤولية مهني</h4>
+                            <p class="small mb-0 lh-lg">
+                                صُمم هذا الموقع كأداة مساعدة مرجعية سريعة للممارسين الصحيين (أطباء وصيادلة). لا تغني المعلومات الواردة هنا عن المحاكمة السريرية الفردية لكل حالة مرضية، أو الرجوع إلى النشرة الدوائية الرسمية عند التعامل مع حالات القصور العضوي أو الحوامل والخدج.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="index.html" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm">
+                <i class="bi bi-arrow-right me-2"></i> العودة إلى موسوعة الأدوية
+            </a>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+     <footer class="footer py-4 border-top mt-5" style="background-color: var(--bg-card);">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <p class="mb-0 small" style="color: var(--text-muted);">
+                © 2026 <strong>الموسوعة الصيدلانية السريرية</strong> — مبنية وفق دلائل BNF & BNFc.
+            </p>
+            <p class="mb-0 small" style="color: var(--text-muted);">
+                 <strong>الصيدلاني أحمد الشلبي  </strong> 
+            </p>
+            <div class="d-flex gap-3 small">
+                <a href="index.html" class="text-decoration-none fw-bold" style="color: var(--primary-color);">الرئيسية</a>
+                <a href="about.html" class="text-decoration-none fw-bold" style="color: var(--primary-color);">حول المرجع</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
